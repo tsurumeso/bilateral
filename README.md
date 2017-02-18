@@ -6,13 +6,13 @@ Bilateral Filter implementation using Cython and OpenMP.
 - Pillow
 - Cython
 
-## Installation
+## Build
 ```
 python setup.py build_ext --inplace
 ```
 
 ## Usage
-```
+``` python
 import filter
 from PIL import Image
 
