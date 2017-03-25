@@ -3,8 +3,8 @@ from __future__ import division
 import cython
 from cython.parallel import prange
 from cython.parallel import parallel
-
 import numpy
+
 cimport numpy
 
 

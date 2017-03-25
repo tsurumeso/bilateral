@@ -1,6 +1,7 @@
-import _filter
 import numpy as np
 from PIL import Image
+
+import _filter
 
 
 def bilateral_filter(src, diameter=5, sigma_space=20, sigma_color=20):
