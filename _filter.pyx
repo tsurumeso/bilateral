@@ -28,8 +28,7 @@ def _l_bilateral_solver(uint8_t[:, :] src, int d, s_space, s_color):
     cdef int h = src.shape[0]
     cdef int w = src.shape[1]
     cdef uint8_t f, p
-    cdef uint8_t[:, :] pad_src = numpy.zeros(
-        (h + (2 * r), w + (2 * r)), dtype=numpy.uint8)
+    cdef uint8_t[:, :] pad_src = numpy.zeros((h + (2 * r), w + (2 * r)), dtype=numpy.uint8)
     cdef float wt, sum = 0
     cdef float inv_ss = -0.5 / (s_space * s_space)
     cdef float inv_sc = -0.5 / (s_color * s_color)
@@ -70,8 +69,7 @@ def _rgb_bilateral_solver(uint8_t[:, :, :] src, int d, s_space, s_color):
     cdef int c = src.shape[2]
     cdef uint8_t f_r, f_g, f_b
     cdef uint8_t p_r, p_g, p_b
-    cdef uint8_t[:, :, :] pad_src = numpy.zeros(
-        (h + (2 * r), w + (2 * r), c), dtype=numpy.uint8)
+    cdef uint8_t[:, :, :] pad_src = numpy.zeros((h + (2 * r), w + (2 * r), c), dtype=numpy.uint8)
     cdef float wt, sum = 0
     cdef float inv_ss = -0.5 / (s_space * s_space)
     cdef float inv_sc = -0.5 / (s_color * s_color)
@@ -98,10 +96,7 @@ def _rgb_bilateral_solver(uint8_t[:, :, :] src, int d, s_space, s_color):
                         f_r = pad_src[y_r + i, x_r + j, 0]
                         f_g = pad_src[y_r + i, x_r + j, 1]
                         f_b = pad_src[y_r + i, x_r + j, 2]
-                        wt = expf(ws[i, j] + (
-                                  sqr(p_r - f_r) +
-                                  sqr(p_g - f_g) +
-                                  sqr(p_b - f_b)) * inv_sc)
+                        wt = expf(ws[i, j] + (sqr(p_r - f_r) + sqr(p_g - f_g) + sqr(p_b - f_b)) * inv_sc)
                         dst[y_r, x_r, 0] += f_r * wt
                         dst[y_r, x_r, 1] += f_g * wt
                         dst[y_r, x_r, 2] += f_b * wt
